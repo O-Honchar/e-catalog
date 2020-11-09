@@ -19,3 +19,13 @@ body {
   background-color: var(--color-dark);
   color: var(--color-bright);
 }
+
+.radio-language__wrapper {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-language__wrapper > div {
+  padding-bottom: 10px;
+}
