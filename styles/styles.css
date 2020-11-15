@@ -18,6 +18,11 @@
 body {
   background-color: var(--color-dark);
   color: var(--color-bright);
+  padding: 0 10px;
+}
+
+body > p {
+  padding: 10px 0;
 }
 
 .radio-language__wrapper {
