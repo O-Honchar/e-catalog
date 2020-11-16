@@ -1,3 +1,36 @@
-p {
-  color: brown;
+@import "normalize.css";
+
+/* ============== COLORS ============== */
+:root {
+  --color-dark: #000;
+  --color-bright: #fff;
+}
+/* ============== COLORS ============== */
+
+/* ============== FONTS ============== */
+/* ============== FONTS ============== */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-dark);
+  color: var(--color-bright);
+  padding: 0 10px;
+}
+
+body > p {
+  padding: 10px 0;
+}
+
+.radio-language__wrapper {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-language__wrapper > div {
+  padding-bottom: 10px;
 }
