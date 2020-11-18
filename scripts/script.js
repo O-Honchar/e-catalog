@@ -1,6 +1,6 @@
 // initial variables
 let currentLanguage = undefined;
-// debugger;
+
 // get array of all DOM elements that must be translated
 const allDOMelements = document.querySelectorAll("[translate]");
 
@@ -40,3 +40,7 @@ const getJSON = (language) =>
     .then((response) => response.json())
     .then((data) => setNewText(data))
     .catch((error) => console.error("Error: ", error));
+
+if (currentLanguage !== "UA") {
+  getJSON(currentLanguage);
+}
