@@ -43,4 +43,5 @@ const getJSON = (language) =>
 
 if (currentLanguage !== "UA") {
   getJSON(currentLanguage);
+  document.getElementById(`${currentLanguage}`).checked = true;
 }
