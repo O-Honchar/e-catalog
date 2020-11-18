@@ -4,64 +4,25 @@ let currentLanguage = undefined;
 // get array of all DOM elements that must be translated
 const allDOMelements = document.querySelectorAll("[translate]");
 
-// temp varibles for text translating
-const UA = {
-  qwerty: "E-catalog опубліковано на git-hub pages",
-  asdfgh: "CSS і JS файли під'єднано",
-};
-
-const RU = {
-  qwerty: "E-catalog опубликовано на git-hub pages",
-  asdfgh: "CSS и JS файлы подсоедененны",
-};
-
-const EN = {
-  qwerty: "E-catalog is published on git-hub pages",
-  asdfgh: "CSS and JS files are connected",
-};
-
-const DE = {
-  qwerty: "E-katalog wird auf Github-Seiten veröffentlicht",
-  asdfgh: "CSS- und JS-Dateien sind verbunden",
-};
-
 // check if currentLanguage is in localstorage ang set/get currentLanguage
-if (localStorage.getItem(currentLanguage) === null) {
+if (localStorage.getItem("currentLanguage") === null) {
   currentLanguage = "UA";
   localStorage.setItem("currentLanguage", currentLanguage);
 } else {
-  currentLanguage = localStorage.getItem(currentLanguage);
+  currentLanguage = localStorage.getItem("currentLanguage");
 }
 
 // handleClick to change currentLanguage
 const setNewLanguage = (e) => {
   currentLanguage = e.target.id;
   localStorage.setItem("currentLanguage", currentLanguage);
+  return currentLanguage;
 };
 
-// get new text for new language
-const setNewText = () => {
+// set new text for new language
+const setNewText = (language) => {
   allDOMelements.forEach((element) => {
-    switch (currentLanguage) {
-      case "UA":
-        element.innerText = UA[element.id];
-        break;
-
-      case "RU":
-        element.innerText = RU[element.id];
-        break;
-
-      case "EN":
-        element.innerText = EN[element.id];
-        break;
-
-      case "DE":
-        element.innerText = DE[element.id];
-        break;
-
-      default:
-        break;
-    }
+    element.innerText = language[element.id];
   });
 };
 
@@ -69,9 +30,18 @@ const setNewText = () => {
 const langButtons = document.querySelectorAll("[lang-buttons]");
 langButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    setNewLanguage(e);
-    setNewText();
+    getJSON(setNewLanguage(e));
   });
 });
 
-//
+// fetch / get translation json
+const getJSON = (language) =>
+  fetch(`../translation/${language}.json`)
+    .then((response) => response.json())
+    .then((data) => setNewText(data))
+    .catch((error) => console.error("Error: ", error));
+
+if (currentLanguage !== "UA") {
+  getJSON(currentLanguage);
+  document.getElementById(`${currentLanguage}`).checked = true;
+}
