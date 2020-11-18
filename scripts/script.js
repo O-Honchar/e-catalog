@@ -1,15 +1,15 @@
 // initial variables
 let currentLanguage = undefined;
-
+// debugger;
 // get array of all DOM elements that must be translated
 const allDOMelements = document.querySelectorAll("[translate]");
 
 // check if currentLanguage is in localstorage ang set/get currentLanguage
-if (localStorage.getItem(currentLanguage) === null) {
+if (localStorage.getItem("currentLanguage") === null) {
   currentLanguage = "UA";
   localStorage.setItem("currentLanguage", currentLanguage);
 } else {
-  currentLanguage = localStorage.getItem(currentLanguage);
+  currentLanguage = localStorage.getItem("currentLanguage");
 }
 
 // handleClick to change currentLanguage
